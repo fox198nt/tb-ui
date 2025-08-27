@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
+body {
+    background: #28282a;
+    color: #fff;
+    font-family: 'Lexend', sans-serif;
+    margin:0;
+    padding:0;
+    width: 100%;
+    position: absolute;
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+/* navigation bar */
+nav {
+    position: fixed;
+    display: flex;
+    background: #1f1f1f50;
+    backdrop-filter: blur(5px);
+    width: 100%;
+    height: 80px;
+    top: 0;
+    left: 0;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+#logo {
+    height: 80px;
+    margin-left: 20px;
+    margin-top: 22px;
+    transition: 0.25s ease;
+}
+#logo:hover {
+    transform: scale(1.1);
+}
+
+/* navbar icons */
+#menu {
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    font-size: 30px;
+}
+#menu i {
+    color: #bbb;
+    transition: 0.5s ease;
+    margin: 10px;
+}
+#menu i:hover {
+    color: #fff;
+    transform: scale(1.2) rotate(5deg);
+    cursor: pointer;
+}
+#menu i:active {
+    transform: scale(0.9) !important;
+    color: dodgerblue;
+}
+/* gear spin animation, because why not */
+.bi-gear-fill:hover {
+    transform: scale(1.2) rotate(95deg) !important;
+}
+
+/* containers style */
+.container {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(90deg, #222224, #0e0e0f);
+    padding: 5px;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+
+.container .text {
+    display: inline-flex;
+    font-size: 35px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.container .title {
+    display: inline;
+    border-bottom: #bbb 2px solid;
+    width: 100%;
+}
+
+/* welcome back */
+#wb {
+    background: #1e4aa8;
+    background: linear-gradient(0deg,rgba(30, 74, 168, 1) 0%, rgba(10, 46, 125, 1) 75%); 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#wb #pfp {
+    height: 115px;
+    position: static;
+    margin-right: 10px;
+    border-radius: 100%;
+}
+
+/* hand waving animation */
+#hand {
+    margin: 10px;
+    font-size: larger;
+}
+
+#hand:hover {
+    animation: wave 1s;
+}
+
+/* chats list and chat */
+#chatsList {
+    padding-bottom: 5px;
+}
+
+.chat {
+    margin-top: 20px;
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: #1f1818;
+    background: linear-gradient(90deg, #181818, #1c1c1e);
+    border: #bbb 2px solid;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+.csettings {
+    display: flex;
+    font-size: 25px;
+    color: #bbb;
+    align-items: center;
+} 
+.csettings i {
+    margin: 5px;
+    transition: 0.5s ease;
+}
+.csettings i:hover {
+    transform: scale(1.3);
+    color: #fff;
+}
+.csettings .bi-trash-fill:hover {
+    transform: scale(1.3);
+    color: #ed1031 !important   ;
+}
+
+/* hr stuff */
+hr {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    margin-top: 0;
+}
+
+@keyframes wave {
+    25% {
+        transform: rotate(15deg) scale(1.2);
+    } 50% {
+        transform: rotate(-15deg) scale(1.2);
+    } 75% {
+        transform: rotate(15deg) scale(1.2);
+    } 100% {
+        transform: rotate(0deg);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #wb b {
+        font-size: 25px;
+    }
+}
