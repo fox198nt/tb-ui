@@ -13,6 +13,51 @@ body {
     padding-top: 80px;
 }
 
+
+
+/* button */
+button {
+    background: #1e90ff;
+    color: #fff;
+    font-family: 'Lexend', sans-serif;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+    transition: 0.5s;
+    font-size: 17px;
+}
+button:hover {
+    background: #333 !important;
+    transform: scale(0.95);
+    cursor: pointer;
+}
+
+/* input and label */
+input {
+    color: #000;
+    font-family: 'Lexend', sans-serif;
+    border: #666 2px solid;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    transition: 0.5s;
+    font-size: 17px; 
+}
+label {
+    font-size: larger;
+}
+
+/* hr */
+hr {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    margin-top: 0;
+}
+
+
+
 /* navigation bar */
 nav {
     position: fixed;
@@ -66,6 +111,8 @@ nav {
     transform: scale(1.2) rotate(95deg) !important;
 }
 
+
+
 /* containers style */
 .container {
     position: relative;
@@ -84,8 +131,8 @@ nav {
 }
 
 .container .title {
-    display: inline;
-    border-bottom: #bbb 2px solid;
+    display: inline-flex;
+    justify-content: space-between;
     width: 100%;
 }
 
@@ -103,6 +150,11 @@ nav {
     position: static;
     margin-right: 10px;
     border-radius: 100%;
+    transition: 1s;
+}
+#wb #pfp:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 /* hand waving animation */
@@ -113,10 +165,13 @@ nav {
 
 #hand:hover {
     animation: wave 1s;
+    cursor: grab;
 }
 
-/* chats list and chat */
-#chatsList {
+
+
+/* chat list and chat */
+#chatList {
     padding-bottom: 5px;
 }
 
@@ -141,6 +196,7 @@ nav {
 .csettings i {
     margin: 5px;
     transition: 0.5s ease;
+    cursor: pointer;
 }
 .csettings i:hover {
     transform: scale(1.3);
@@ -151,14 +207,34 @@ nav {
     color: #ed1031 !important   ;
 }
 
-/* hr stuff */
-hr {
-    width: 100%;
-    position: absolute;
+
+
+/* modal stuff */
+#modal-wrapper {
+    position: fixed;
     left: 0;
-    margin-top: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #00000050;
+    z-index: 10;
 }
 
+#modal {
+    position: static;
+    padding: 20px;
+    border-radius: 20px;
+    width: fit-content;
+    background-color: #fff;
+    color: #000;
+}
+
+
+
+/* wave animation keyframes */
 @keyframes wave {
     25% {
         transform: rotate(15deg) scale(1.2);
@@ -168,6 +244,17 @@ hr {
         transform: rotate(15deg) scale(1.2);
     } 100% {
         transform: rotate(0deg);
+    }
+}
+
+/* spin animation keyframes | this has no purpose, its just there :P */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    } 50% {
+        transform: rotate(180deg);
+    } 100% {
+        transform: rotate(360deg);
     }
 }
 
