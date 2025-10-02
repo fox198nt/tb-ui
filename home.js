@@ -1,51 +1,9 @@
-const modal = {
-    open: function(title, content, okfunc) {
-        const modalContent = `<div id="modal-wrapper">
-            <div id="modal">
-                <h2>${title}</h2>
-                <div>${content}</div>
-                <div id="modal-btns">
-                    <button id="modal-cancel" style="background: #555;">Cancel</button>
-                    <button id="modal-ok" style="background: #3ee668;">OK</button>
-                </div>
-            </div>
-        </div>`;
-        
-        document.body.insertAdjacentHTML('beforeend', modalContent);
-        console.log('Opened modal with title ' + title);
+// script for homepage
+import { modal } from "./script.js";
 
-        const modalOkButton = document.getElementById('modal-ok');
-        const modalClButton = document.getElementById('modal-cancel');
-
-        modalOkButton.onclick = () => {
-            if (typeof okfunc === 'function') {
-                okfunc();
-            } else if (!okfunc) {
-            } else {
-                console.error("Provided action isn't a function!");
-            };
-            modal.close();
-        };
-
-        modalClButton.onclick = () => {
-            modal.close();
-            console.log('Closed modal');
-        };
-    },
-    close: function() {
-        const modalWrapper = document.getElementById('modal-wrapper');
-        if (modalWrapper) {
-            modalWrapper.remove();
-            console.log('Closed modal');
-        };
-    }
-};
-const chatList = document.getElementById('chatList');
 let lipsumShown = false;
-
-// new chat stuff
-function newChat() {
-    const detailsObj = `<div>
+const chatList = document.getElementById('chatList');
+const detailsObj = `<div>
     <label for="name">Name:</label>
     <input name="name" id="details-name" type="text">
     <br>
@@ -56,7 +14,11 @@ function newChat() {
     <input name="colour" id="details-colour" type="color">
 </div>`;
 
-    modal.open('New Chat', detailsObj, function() {
+// new chat stuff
+function newChat() {
+    modal.open('New Chat', detailsObj);
+
+    modalOkButton.onclick = () => {
         const name = document.getElementById('details-name').value;
         const link = document.getElementById('details-link').value;
         const col = document.getElementById('details-colour').value;
@@ -71,11 +33,12 @@ function newChat() {
 
         chatList.insertAdjacentHTML('beforeend', chatObj);
         console.log('Added chat ' + id);
+        modalOkButton.parentElement.parentElement.parentElement.remove();
 
         if (document.getElementById('ntsh')) {
             document.getElementById('ntsh').remove();
         };
-    });
+    };
 };
 
 // remove and edit chat

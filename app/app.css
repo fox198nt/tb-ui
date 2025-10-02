@@ -1,0 +1,42 @@
+#chat {
+    position: absolute;
+    top: 0;
+    left: 1%;
+    width: 100%;
+    padding-top: 80px;
+    font-size: larger;
+}
+
+/* base message style */
+.message {
+    margin: 15px;
+    /* background-color: #ffffff10; */
+} 
+
+/* username and timestamp */
+.username {
+    background-color: #fff;
+    color: #000;
+    border: 4px solid;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+.timestamp {
+    margin: 5px;
+    color: #bbb;
+}
+
+.message .timestamp + .content {
+    margin-top: 10px;
+}
+
+/* join and leave message style */
+.message.jl {
+    display: flex;
+    align-items: center;
+}
+
+.message.jl .content {
+    margin-left: 5px;
+}

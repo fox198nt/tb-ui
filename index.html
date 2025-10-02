@@ -1,17 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Textbored</title>
         <link href="style.css" rel="stylesheet">
+        <link href="home.css" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     </head>
     <body>
         <nav>
-            <img src="./logo.svg" id="logo">
+            <!-- logo, inline because of animation -->
+            <svg width="178.29" height="80" version="1.1" viewBox="0 0 .35657 .16" xmlns="http://www.w3.org/2000/svg" id="logo">
+                    <defs>
+                        <linearGradient id="a" x1="4" x2="4" y1="-9.9093e-7" y2="3.5" gradientTransform="scale(.045714)" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#2fdc55" offset="0"/>
+                            <stop stop-color="#257018" offset="1"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="m0.022857 0s-0.022857 0-0.022857 0.022857v0.068571s0 0.022857 0.022857 0.022857h0.25143l0.045714 0.045714v-0.045714h0.013714s0.022857 0 0.022857-0.022857v-0.068571s0-0.022857-0.022857-0.022857z" fill="url(#a)"/>
+                    <g id="logo-text">
+                        <g transform="matrix(.045714 0 0 .045714 .022857 -1.4591)" fill="#fff">
+                        <path d="m0.1 32.417h0.2v0.5h0.4v0.2h-0.4v0.6h0.4l-0.2 0.2h-0.2s-0.2 0-0.2-0.2v-0.6h-0.1v-0.2h0.1z"/>
+                        <path d="m2.35 32.417h0.2v0.5h0.4v0.2h-0.4v0.6h0.2l0.2 0.2h-0.4s-0.2 0-0.2-0.2v-0.6h-0.1v-0.2h0.1z"/>
+                        <path d="m3 32.417v1.3c0 0.2 0.2 0.2 0.2 0.2h0.3c0.2 0 0.2-0.2 0.2-0.2l-1e-7 -0.6s1e-7 -0.2-0.2-0.2h-0.3v-0.5zm0.2 0.7h0.3v0.6h-0.3z" />
+                        <path d="m6.7 32.417v1.3c0 0.2-0.2 0.2-0.2 0.2h-0.3c-0.2 0-0.2-0.2-0.2-0.2l1e-7 -0.6s-1e-7 -0.2 0.2-0.2h0.3v-0.5zm-0.2 0.7h-0.3v0.6h0.3z" />
+                        <path d="m0.95 32.917s-0.2 0-0.2 0.2v0.6s2e-8 0.2 0.2 0.2h0.3c0.2 0 0.2-0.2 0.2-0.2h-0.5v-0.3h0.5v-0.3s0-0.2-0.2-0.2zm0 0.2h0.3v0.2h-0.3z"/>
+                        <path d="m5.45 32.917s-0.2 0-0.2 0.2v0.6s0 0.2 0.2 0.2h0.3c0.2 0 0.2-0.2 0.2-0.2h-0.5v-0.3h0.5v-0.3s0-0.2-0.2-0.2zm0 0.2h0.3v0.2h-0.3z"/>
+                        <path d="m1.5 32.917 0.5 1h0.2l-0.5-1zm0.5 0-0.1 0.3 0.1 0.2 0.2-0.5zm-0.3 0.5-0.2 0.5h0.2l0.1-0.3z"/>
+                        <path d="m3.95 32.917s-0.2 0-0.2 0.2v0.6s1e-7 0.2 0.2 0.2h0.3s0.2 0 0.2-0.2v-0.6s0-0.2-0.2-0.2zm0 0.2h0.3v0.6h-0.3z"/>
+                        <path d="m4.5 32.917v1h0.2l-1e-7 -0.7c0-0.1 0.3-0.1 0.5-0.1 1e-7 -0.06667 1e-7 -0.13333 1e-7 -0.2-0.2 0-0.5 0-0.5 0.1v-0.1z"/>
+                    </g>
+                </g>
+            </svg>
+
+
             <div id="menu">
                 <i class="bi bi-house-fill" title="Home"></i>
-                <i class="bi bi-chat-left-fill" title="Last opened chat"></i>
+                <i class="bi bi-chat-left-fill" title="Chat" onclick="window.location.href='./app/index.html';"></i></i>
                 <i class="bi bi-gear-fill" title="Settings"></i>
             </div>
         </nav>
@@ -21,7 +46,7 @@
                 <p id='hand'>👋</p>
                 <b>Welcome back, foxnt!</b>
             </div>
-            <img src="https://avatars.githubusercontent.com/u/97329405?v=4" id="pfp">
+            <img src="https://avatars.githubusercontent.com/u/97329405?v=4" id="pfp" alt="Your profile picture">
         </div>
 
         <div class="container" id="chats">
@@ -31,7 +56,7 @@
             </div>
             <hr>
             <div id="chatList">
-                <div class="chat" id="chat-Main">
+                <div class="chatDetails" id="chat-Main">
                     <h3>Main</h3>
                     <div class="csettings">
                         <i class="bi bi-pencil-square" onclick="editChat('Main')"></i>
@@ -65,6 +90,7 @@
             Donec tincidunt tellus quis ligula feugiat sagittis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque at sapien ut nisi volutpat commodo. Proin ullamcorper laoreet urna at dictum. Pellentesque diam libero, elementum nec justo eu, cursus molestie nunc. Phasellus cursus id nunc vel pellentesque. Sed mattis, diam sit amet condimentum aliquam, sapien metus pulvinar ligula, sed faucibus nisl nunc in urna. In tempus sodales efficitur. Maecenas mollis odio id sodales viverra.
             </p>
         </div>
+        
         <script src="script.js"></script>
     </body>
 </html>
