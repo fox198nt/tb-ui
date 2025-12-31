@@ -4,16 +4,17 @@
 const chat = document.getElementById('chat');
 let un;
 let col;
+let msgMakerOpened;
 
 // function to get a random colour
 function getRandomColour() {
     let letters = '0123456789ABCDEF';
     let colour = '#';
-    for (var i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i++) {
         colour += letters[Math.floor(Math.random() * 16)];
     }
     return colour;
-}
+};
 
 // convert 24 hour to 12 hour time
 function convertTo12Hr(time24) {
@@ -29,7 +30,7 @@ function convertTo12Hr(time24) {
         minutes = "0" + minutes; 
     }
     return hours + ":" + minutes + " " + period;
-}
+};
 
 // parse json to html
 function j2hparse(jsonMsg) {
@@ -44,7 +45,7 @@ function j2hparse(jsonMsg) {
 </div>`,
         leave: `<div class="message jl">
     <strong class="username" style="border-color: ${msg.colour};">${msg.username}</strong>
-    <div class="content">has joined the chat.</div>
+    <div class="content">has left the chat.</div>
     <small class="timestamp">${time}</small>
 </div>`,
         normal: `<div class="message">
@@ -53,16 +54,17 @@ function j2hparse(jsonMsg) {
     <div class="content">${msg.message}</div>
 </div>`,
         unable: `<p style='color: red;'>Unable to parse received message...</p>`
-    }
+    };
 
-    switch (msg.type) {
-        case "message":
+    switch (msg.type.toUpperCase()) {
+        case "NORMAL":
             return messages.normal;
-        case "join":
+        case "JOIN":
             return messages.join;
-        case "leave":
+        case "LEAVE":
             return messages.leave;
         default:
+            console.error('Unable to parse message: ' + jsonMsg)
             return messages.unable;
     };
 };
@@ -72,7 +74,58 @@ function addMessage(jsonMsg) {
     chat.insertAdjacentHTML('beforeend', j2hparse(jsonMsg));
 };
 
-/* to be done later // set username and colour on page load
+// open msg-maker.html
+function openMsgMaker() {
+    let msgMaker = document.getElementById('msgMaker');
+    if (msgMakerOpened == false) {
+        msgMaker.style.display='flex';
+        msgMakerOpened == true;
+    } else if (msgMakerOpened == true) {
+        msgMaker.style.display='none';
+        msgMakerOpened == false;
+    } else if (!msgMaker) {
+
+    };
+};
+
+// add messages on load
+window.onload =()=>{
+    msgMakerOpened = false;
+    const col1 = getRandomColour()
+    const col2 = getRandomColour()
+
+    addMessage(JSON.stringify({
+        type: "Join",
+        username: "User" + col1,
+        colour: col1,
+        timestamp: "12:34"
+    }));
+
+    addMessage(JSON.stringify({
+        type: "Normal",
+        username: "User" + col1,
+        colour: col1,
+        message: 'This is a message.',
+        timestamp: "12:34"
+    }));
+
+    addMessage(JSON.stringify({
+        type: "Normal",
+        username: "User" + col2,
+        colour: col2,
+        message: 'This is also a message.',
+        timestamp: "12:35"
+    }));
+
+    addMessage(JSON.stringify({
+        type: "leave",
+        username: "User" + col2,
+        colour: col2,
+        timestamp: "12:35"
+    }));
+};
+
+/* to-do: // set username and colour on page load
 window.onload = () => {
     un = 'user' + Math.round(Math.random() * 999);
     col = getRandomColour();

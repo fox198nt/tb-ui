@@ -3,23 +3,27 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Textbored</title>
+        <title>Textbored - App</title>
         <link href="style.css" rel="stylesheet">
-        <link href="home.css" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link href="app.css" rel="stylesheet">
     </head>
     <body>
+        <noscript>
+            <img src="./noscript.png" height="150px" alt="Y U NO JAVASCRIPT" title="I NEED JAVASCRIPT">
+        </noscript>
+        <!-- navbar -->
         <nav>
-            <!-- logo, inline because of animation -->
-            <svg width="178.29" height="80" version="1.1" viewBox="0 0 .35657 .16" xmlns="http://www.w3.org/2000/svg" id="logo">
-                    <defs>
-                        <linearGradient id="a" x1="4" x2="4" y1="-9.9093e-7" y2="3.5" gradientTransform="scale(.045714)" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#2fdc55" offset="0"/>
-                            <stop stop-color="#257018" offset="1"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="m0.022857 0s-0.022857 0-0.022857 0.022857v0.068571s0 0.022857 0.022857 0.022857h0.25143l0.045714 0.045714v-0.045714h0.013714s0.022857 0 0.022857-0.022857v-0.068571s0-0.022857-0.022857-0.022857z" fill="url(#a)"/>
-                    <g id="logo-text">
-                        <g transform="matrix(.045714 0 0 .045714 .022857 -1.4591)" fill="#fff">
+            <!-- logo -->
+            <svg width="178.29" height="80" version="1.1" viewBox="0 0 .35657 .16" xmlns="http://www.w3.org/2000/svg" id="logo" title="Textbored">
+                <defs>
+                    <linearGradient id="a" x1="4" x2="4" y1="-9.9093e-7" y2="3.5" gradientTransform="scale(.045714)" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#2fdc55" offset="0"/>
+                        <stop stop-color="#257018" offset="1"/>
+                    </linearGradient>
+                </defs>
+                <path d="m0.022857 0s-0.022857 0-0.022857 0.022857v0.068571s0 0.022857 0.022857 0.022857h0.25143l0.045714 0.045714v-0.045714h0.013714s0.022857 0 0.022857-0.022857v-0.068571s0-0.022857-0.022857-0.022857z" fill="url(#a)"/>
+                <g id="logo-text">
+                    <g transform="matrix(.045714 0 0 .045714 .022857 -1.4591)" fill="#fff">
                         <path d="m0.1 32.417h0.2v0.5h0.4v0.2h-0.4v0.6h0.4l-0.2 0.2h-0.2s-0.2 0-0.2-0.2v-0.6h-0.1v-0.2h0.1z"/>
                         <path d="m2.35 32.417h0.2v0.5h0.4v0.2h-0.4v0.6h0.2l0.2 0.2h-0.4s-0.2 0-0.2-0.2v-0.6h-0.1v-0.2h0.1z"/>
                         <path d="m3 32.417v1.3c0 0.2 0.2 0.2 0.2 0.2h0.3c0.2 0 0.2-0.2 0.2-0.2l-1e-7 -0.6s1e-7 -0.2-0.2-0.2h-0.3v-0.5zm0.2 0.7h0.3v0.6h-0.3z" />
@@ -33,64 +37,22 @@
                 </g>
             </svg>
 
-
             <div id="menu">
-                <i class="bi bi-house-fill" title="Home"></i>
-                <i class="bi bi-chat-left-fill" title="Chat" onclick="window.location.href='./app/index.html';"></i></i>
+                <!-- i class="bi bi-house-fill" title="Home" onclick="window.location.href='../index.html';"></i>
+                <i class="bi bi-chat-left-fill" title="Chat"></i-->
                 <i class="bi bi-gear-fill" title="Settings"></i>
-            </div>
+            </div >
         </nav>
 
-        <div class="container" id="wb">
-            <div class="text">
-                <p id='hand'>👋</p>
-                <b>Welcome back, foxnt!</b>
-            </div>
-            <img src="https://avatars.githubusercontent.com/u/97329405?v=4" id="pfp" alt="Your profile picture">
+        <div id="chat">
+        </div>
+        <button style="position: fixed; bottom: 80px; right: 0;" onclick="openMsgMaker()" title="Open message tool">Add message</button>
+
+        <div id="msgBar" title="Not functioning as of now">
+            <input width="90vw" placeholder="Enter your message...">
+            <button><i class='bi bi-send-fill'></i></button>
         </div>
 
-        <div class="container" id="chats">
-            <div class="title">
-                <h2 style="margin: 10px;"><i class="bi bi-chat-left-fill"></i> Chats</h2>
-                <button onclick="newChat()"><i class="bi bi-plus-circle"></i> New Chat</button>
-            </div>
-            <hr>
-            <div id="chatList">
-                <div class="chatDetails" id="chat-Main">
-                    <h3>Main</h3>
-                    <div class="csettings">
-                        <i class="bi bi-pencil-square" onclick="editChat('Main')"></i>
-                        <i class="bi bi-trash-fill" onclick="removeChat('Main')"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button onclick="lipsum(this)">Show Lorem Ipsum</button>
-        <div id="lipsum" style="display: none;">
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper libero vel elit vestibulum tempus. Ut quis ultricies arcu, sit amet pellentesque purus. Curabitur congue volutpat urna, id suscipit mauris. Vivamus a tellus in orci bibendum pretium. Nulla cursus sapien ac elit sagittis scelerisque. Donec fermentum, odio quis luctus varius, nisl risus vulputate purus, non luctus magna massa vitae urna. Fusce non condimentum magna, at tristique dolor. Sed tempus, tellus et feugiat suscipit, dui enim tempus ligula, a iaculis massa ipsum a lectus. Suspendisse semper dapibus tortor, in tincidunt erat aliquet vel. Maecenas gravida purus nec euismod volutpat. Donec luctus a dolor suscipit pharetra. Donec sodales ullamcorper ornare. Pellentesque enim ex, vehicula aliquet dictum nec, pellentesque in turpis. Vestibulum gravida, tellus sed mollis semper, turpis diam ultricies diam, vel consequat neque ligula non ante.
-            </p><p>
-            Quisque et elit vestibulum, commodo felis sit amet, convallis nunc. Nullam euismod urna et tortor posuere, a rutrum nulla rhoncus. Etiam porttitor dui tortor. Donec sagittis velit nec lorem feugiat, quis vestibulum nunc luctus. Nunc eleifend metus non quam imperdiet, sed commodo libero tempus. Aenean iaculis lacus et sem interdum, ac posuere erat tincidunt. Nullam eget posuere quam. Ut vitae malesuada mauris.
-            </p><p>
-            Aliquam pulvinar magna a tempor interdum. Nulla sagittis venenatis feugiat. Sed tempus ultricies urna. Curabitur posuere est lorem, non ornare libero tristique sit amet. Sed auctor turpis ac malesuada molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ipsum erat, lobortis euismod ante et, gravida gravida turpis.
-            </p><p>
-            Donec tempus ornare aliquam. Integer eu lectus quis lorem efficitur rutrum non et ligula. In tortor urna, semper at sagittis quis, accumsan eu diam. Maecenas mi sem, malesuada eu iaculis nec, consequat egestas velit. Vestibulum sollicitudin est est, at suscipit lacus varius sed. Vivamus eget auctor est, eu molestie augue. Vestibulum hendrerit eleifend mi, vitae sodales dolor luctus at. Nulla nec nisi urna. Mauris massa diam, ultricies ut aliquet efficitur, malesuada ac magna. Morbi ullamcorper sem ex, non ornare quam porta vitae. Praesent feugiat ex a volutpat condimentum. Nulla faucibus eros sit amet consequat ultrices. Donec imperdiet volutpat hendrerit. Donec sit amet quam sed magna blandit mollis. Praesent purus dui, facilisis non erat eu, eleifend aliquet ligula.
-            </p><p>
-            Donec mollis vulputate magna sit amet convallis. Nullam rutrum mi at vulputate suscipit. Morbi porta magna at laoreet pulvinar. Quisque euismod metus nisi, et eleifend velit rutrum sed. Pellentesque vitae lectus sed nulla rutrum maximus. Quisque molestie eros non mollis fermentum. Duis pretium id tortor sed molestie. Donec egestas condimentum erat nec volutpat. Morbi vulputate efficitur urna, id fermentum mauris. Fusce et tortor interdum, semper quam quis, sagittis ligula. Mauris finibus enim ac sollicitudin blandit. Praesent interdum condimentum justo, sed mattis velit cursus vitae. Sed pharetra sed est eget maximus. Vestibulum posuere erat ac massa cursus vulputate. Aliquam pellentesque dictum ex, non rhoncus leo sagittis non.
-            </p><p>
-            Donec convallis mi in sagittis facilisis. Phasellus scelerisque porta elementum. Donec lobortis, magna eu volutpat varius, augue ex eleifend dolor, vel lacinia elit urna vel quam. Sed interdum lacinia risus, sit amet dignissim tortor scelerisque mollis. Curabitur sagittis ante in mollis dictum. Suspendisse dolor nibh, consectetur eu aliquam sodales, aliquam in felis. Praesent tempor ut augue sed suscipit. Integer auctor ultrices velit commodo bibendum. Quisque dolor nibh, vehicula non elit pretium, aliquam faucibus mi. Integer quis metus eget purus aliquam lacinia. Aliquam quis tellus ullamcorper, semper ex vel, porttitor tellus. Donec sed consectetur eros. Suspendisse ut mollis risus. Phasellus dignissim, eros sit amet laoreet lacinia, arcu purus fringilla velit, vel pellentesque velit lectus id justo. Proin blandit tortor et sem tempor sagittis.
-            </p><p>
-            Morbi nec neque arcu. Fusce libero felis, tempor vitae luctus ut, iaculis at tellus. Etiam sollicitudin in sapien et cursus. Donec elementum, est at tristique rutrum, risus mi porttitor mi, id ullamcorper sem lacus vitae ligula. Suspendisse suscipit tellus a metus dapibus rutrum. Maecenas sollicitudin pellentesque diam, a aliquam felis vehicula nec. Etiam tristique ullamcorper nunc, ut efficitur urna lobortis sit amet. Nullam mauris enim, feugiat sit amet neque ut, interdum finibus est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum fringilla neque sed felis pellentesque euismod.
-            </p><p>
-            Maecenas eu justo malesuada eros vehicula tincidunt. In sed dictum orci. Ut ultrices consectetur turpis a suscipit. Maecenas vel sapien ut ante vehicula porttitor ut sit amet justo. Quisque elementum arcu turpis, consequat imperdiet justo feugiat quis. Praesent dictum ipsum mauris, ac euismod lorem blandit sit amet. Sed sagittis lacus ante, at aliquet mauris facilisis at. Nulla nec sodales purus.
-            </p><p>
-            Sed hendrerit semper tortor ac rhoncus. Nam sit amet porttitor turpis. Sed dictum tellus ac dolor vestibulum, id porttitor enim semper. Duis accumsan turpis enim, vitae vestibulum urna tempor a. Vestibulum et libero a ex rhoncus congue. Curabitur non condimentum nibh, id laoreet odio. Pellentesque et nisl et lorem bibendum feugiat. Nunc at varius mi. Quisque pulvinar, eros quis finibus imperdiet, tortor turpis pulvinar mauris, non fermentum urna leo ac neque. Mauris dolor ante, iaculis dignissim magna nec, tincidunt luctus lectus. Pellentesque commodo mauris tincidunt augue venenatis ullamcorper.
-            </p><p>
-            Donec tincidunt tellus quis ligula feugiat sagittis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque at sapien ut nisi volutpat commodo. Proin ullamcorper laoreet urna at dictum. Pellentesque diam libero, elementum nec justo eu, cursus molestie nunc. Phasellus cursus id nunc vel pellentesque. Sed mattis, diam sit amet condimentum aliquam, sapien metus pulvinar ligula, sed faucibus nisl nunc in urna. In tempus sodales efficitur. Maecenas mollis odio id sodales viverra.
-            </p>
-        </div>
-        
-        <script src="script.js"></script>
+        <script src="app.js"></script>
     </body>
 </html>

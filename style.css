@@ -1,6 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Lexend:wght@100..900&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
 
+:root { /* thx josh w comeau */
+  --shadow-col: 240deg 4% 6%;
+  --shadow-low:
+    0px 0.4px 0.3px hsl(var(--shadow-col) / 1),
+    0px 1.6px 1.2px -5px hsl(var(--shadow-col) / 0.54);
+  --shadow-med:
+    0px 0.4px 0.3px hsl(var(--shadow-col) / 1),
+    -0.1px 7.8px 5.9px -5px hsl(var(--shadow-col) / 0.76);
+  --shadow-high:
+    0px 0.4px 0.3px hsl(var(--shadow-col) / 1),
+    -0.1px 5.3px 4px -2.5px hsl(var(--shadow-col) / 1),
+    -0.5px 39.9px 29.9px -5px hsl(var(--shadow-col) / 0.63);
+}
+
 body {
     background: #28282a;
     color: #fff;
@@ -20,29 +34,34 @@ button {
     background: #1e90ff;
     color: #fff;
     font-family: 'IBM Plex Sans', sans-serif;
-    border: none;
-    border-radius: 20px;
+    border: #fff 1px solid;
+    border-radius: 7px;
     padding: 10px;
     margin: 5px;
     transition: 0.5s;
     font-size: 17px;
+    box-shadow: var(--shadow-med);
 }
 button:hover {
     background: #333 !important;
     transform: scale(0.95);
     cursor: pointer;
+    box-shadow: var(--shadow-low);
 }
 
 /* input and label */
-input {
+input, select {
+    background-color: #fff;
     color: #000;
     font-family: 'IBM Plex Sans', sans-serif;
     border: #666 2px solid;
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 10px;
     margin: 5px;
     transition: 0.5s;
     font-size: 17px; 
+    box-shadow: var(--shadow-med);
+    outline: none;
 }
 label {
     font-size: larger;
@@ -116,8 +135,8 @@ nav {
     color: dodgerblue;
 }
 /* gear spin animation, because why not */
-.bi-gear-fill:hover {
-    transform: scale(1.2) rotate(95deg) !important;
+#menu .bi-gear-fill:hover {
+    transform: scale(1.2) rotate(95deg);
 }
 
 
@@ -145,4 +164,5 @@ nav {
     background-color: #fff;
     color: #000;
     animation: bounceInDown 1s ease;
+    box-shadow: var(--shadow-high);
 }

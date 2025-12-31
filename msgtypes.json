@@ -1,0 +1,7 @@
+{
+    "type": "message / join / leave",
+    "username": "[USERNAME]",
+    "colour": "[#aabbcc]",
+    "message": "[Hello, world!]",
+    "timestamp": "6:09 PM"
+}

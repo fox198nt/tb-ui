@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Message Maker</title>
+        <link href="app.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+        <style>
+            body {
+                background-color: #fff;
+                color: #000;
+                padding: 0;
+                left: 10px;
+            }
+            h1 {
+                font-family: "Lexend", sans-serif;
+            }
+            .message {
+                padding: 15px;
+                font-size: larger;
+                background: #28282a;
+                color: white;
+                width: fit-content;
+                border-radius: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Message Maker</h1>
+
+        <div class="message">
+            <strong class="username"></strong>
+            <small class="timestamp"></small>
+            <div class="content"></div>
+        </div>
+
+        <div id="inputs">
+            <label for="un">Username:</label>
+            <input name="un" id="un" type="text">
+            <br>
+
+            <label for="col">Colour:</label>
+            <input name="col" id="col" type="color">
+            <br>
+
+            <label for="time">Timestamp:</label>
+            <input name="time" id="time" type="time">
+            <br>
+
+            <label for="type">Type:</label>
+            <select name="type" id="type">
+                <option>Normal</option>
+                <option>Join</option>
+                <option>Leave</option>
+            </select>
+            <small>im too lazy to change the preview</small>
+            <br>
+
+            <label for="msg">Message:</label>
+            <input name="msg" id="msg" type="text">
+            <br>
+
+            <button onclick="submitFunc()">Submit</button>
+        </div>
+
+        <textarea id="JSONOut" readonly></textarea>
+
+        <script>
+            let un = document.querySelector('.username');
+            let time = document.querySelector('.timestamp');
+            let cont = document.querySelector('.content');
+            let msgJSONData;
+            const inputs = {
+                un: document.querySelector('#un'),
+                col: document.getElementById('col'),
+                msg: document.querySelector('#msg'),
+                time: document.querySelector('#time'),
+                type: document.querySelector('#type')
+            }
+
+            function change() {
+                let timeData = function() {
+                    const ctime = inputs.time.value;
+                    return ctime;
+                }
+                un.innerHTML = inputs.un.value;
+                un.style = `border-color: ${inputs.col.value};`;
+                time.innerHTML = inputs.time.value;
+                cont.innerHTML = inputs.msg.value;
+                
+                switch (inputs.type.value) {    
+                    case "Normal": 
+                        msgJSONData = JSON.stringify({
+                            type: "message",
+                            username: inputs.un.value,
+                            colour: inputs.col.value,
+                            message: inputs.msg.value,
+                            timestamp: inputs.time.value
+                        });
+                    case "Join" || 'Leave': 
+                        msgJSONData = JSON.stringify({
+                            type: inputs.type.value,
+                            username: inputs.un.value,
+                            colour: inputs.col.value,
+                            timestamp: inputs.time.value
+                        });
+                    /* default:
+                        msgJSONData = JSON.stringify({
+                            type: 'unable',
+                            timestamp: inputs.time.value
+                        }); */
+                };  
+            };
+            
+            document.onkeyup = change();
+            
+            function submitFunc() {
+                // document.getElementById("JSONOut").value = `addMessage(JSON.stringify(${msgJSONData}))`;
+                // alert("Copy the value in the textarea, then paste it in the console of the app page");
+                document.getElementById("JSONOut").value = msgJSONData;
+                alert('Paste the value from the textarea in the prompt')
+            };
+        </script>
+    </body>
+</html>
