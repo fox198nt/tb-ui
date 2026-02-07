@@ -1,1 +1,4 @@
 .vscode
+.prettierrc
+run.sh
+extras.txt

@@ -5,15 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Textbored - App</title>
         <link href="style.css" rel="stylesheet">
-        <link href="app.css" rel="stylesheet">
     </head>
     <body>
         <noscript>
-            <img src="./noscript.png" height="150px" alt="Y U NO JAVASCRIPT" title="I NEED JAVASCRIPT">
+            <img src="./.noscript.png" height="150px" alt="Y U NO JAVASCRIPT">
+            <p>This website requires Javascript to function. Are you on a feature phone or something?</p>
         </noscript>
-        <!-- navbar -->
         <nav>
-            <!-- logo -->
             <svg width="178.29" height="80" version="1.1" viewBox="0 0 .35657 .16" xmlns="http://www.w3.org/2000/svg" id="logo" title="Textbored">
                 <defs>
                     <linearGradient id="a" x1="4" x2="4" y1="-9.9093e-7" y2="3.5" gradientTransform="scale(.045714)" gradientUnits="userSpaceOnUse">
@@ -37,22 +35,23 @@
                 </g>
             </svg>
 
-            <div id="menu">
-                <!-- i class="bi bi-house-fill" title="Home" onclick="window.location.href='../index.html';"></i>
-                <i class="bi bi-chat-left-fill" title="Chat"></i-->
+            <div id="icons">
+                <i class="bi bi-server" title="Custom Server URL"></i>
+                <i class="bi bi-github" title="Source Code on Github"></i>
                 <i class="bi bi-gear-fill" title="Settings"></i>
-            </div >
+            </div>
         </nav>
 
         <div id="chat">
-        </div>
-        <button style="position: fixed; bottom: 80px; right: 0;" onclick="openMsgMaker()" title="Open message tool">Add message</button>
 
-        <div id="msgBar" title="Not functioning as of now">
-            <input width="90vw" placeholder="Enter your message...">
-            <button><i class='bi bi-send-fill'></i></button>
         </div>
 
-        <script src="app.js"></script>
+        <div id="msgBar">
+            <input width="90vw" placeholder="Enter your message..." id="usrMessage">
+            <button onclick="sendMessage()"><i class='bi bi-send-fill'></i></button>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+        <script src="script.js"></script>
     </body>
 </html>

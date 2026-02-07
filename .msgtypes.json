@@ -1,0 +1,21 @@
+{
+    "normal": {
+        "type": "normal",
+        "username": "[USERNAME]",
+        "colour": "[#aabbcc]",
+        "message": "[Hello, world!]",
+        "timestamp": "[iso]"
+    },
+    "join": {
+        "type": "join",
+        "username": "[USERNAME]",
+        "colour": "[#aabbcc]",
+        "timestamp": "[iso]"
+    },
+    "leave": {
+        "type": "leave",
+        "username": "[USERNAME]",
+        "colour": "[#aabbcc]",
+        "timestamp": "[iso]"
+    }
+}

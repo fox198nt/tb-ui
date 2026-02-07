@@ -1,0 +1,139 @@
+/* TEXTBORED CLIENT */
+// 📋 VARIABLES
+let ws = new WebSocket('ws://localhost:8000');
+const thisUrl = new URL(window.location.href)
+const chat = document.getElementById('chat');
+const msgBar = document.getElementById('usrMessage');
+let un;
+let col;
+
+// 🛠️ FUNCTIONS
+// get a random colour
+function getRandomColour() {
+    const letters = '0123456789ABCDEF';
+    let colour = '#';
+    for (let i = 0; i < 6; i++) {
+        colour += letters[Math.floor(Math.random() * 16)];
+    }
+    return colour;
+}
+
+// parse json to html
+function j2hparse(jsonMsg) {
+    let data=()=>{
+        try {
+            return JSON.parse(jsonMsg);
+        } catch (error) {
+            return {
+                type: "unable"
+            };
+        }
+    }
+    const msg = data();
+    
+    // const time = convertTo12Hr(msg.timestamp);
+    const time = new Date(msg.time).toLocaleTimeString("en-US", {hour: '2-digit', minute:'2-digit'});
+
+    const messages = {
+        join: `<div class="message jl">
+    <strong class="username" style="border-color: ${msg.colour};">${msg.username}</strong>
+    <div class="content">has joined the chat.</div>
+    <small class="timestamp">${time}</small>
+</div>`,
+        leave: `<div class="message jl">
+    <strong class="username" style="border-color: ${msg.colour};">${msg.username}</strong>
+    <div class="content">has left the chat.</div>
+    <small class="timestamp">${time}</small>
+</div>`,
+        normal: `<div class="message">
+    <strong class="username" style="border-color: ${msg.colour};">${msg.username}</strong>
+    <small class="timestamp">${time}</small>
+    <div class="content">${msg.message}</div>
+</div>`,
+        unable: `<p style='color: red;'>Unable to parse received message...</p>`
+    }
+
+    switch (msg.type.toUpperCase()) {
+        case "NORMAL":
+            return messages.normal;
+        case "JOIN":
+            return messages.join;
+        case "LEAVE":
+            return messages.leave;
+        default:
+            console.error('Unable to parse message: ' + jsonMsg)
+            return messages.unable;
+    }
+}
+
+// add a message to chat div
+function addMessage(jsonMsg) {
+    chat.insertAdjacentHTML('beforeend', j2hparse(jsonMsg));
+}
+
+// send a message to the websocket server
+function sendMessage() {
+    if (msgBar.value != "") {
+        const msg = JSON.stringify({
+            type: 'normal',
+            username: un,
+            colour: col,
+            message: msgBar.value,
+            time: new Date().toUTCString()
+        });
+        ws.send(msg);
+        msgBar.value = "";
+    }
+    // rate limit
+    let lastTime = new Date();
+    return ()=>{
+        const now = new Date();
+        if ((now - lastTime) < 10000) return;
+        lastTime = now;
+    }
+}
+
+// 🔌 WEBSOCKET STUFF
+// send a join message on connection open
+ws.onopen = () => {
+    console.log("Connection initialised!")
+    chat.insertAdjacentHTML('beforeend', '<h2>Connection initialised!</h2>');
+    ws.send(JSON.stringify({
+        type: 'join',
+        username: un,
+        colour: col,
+        time: new Date().toUTCString()
+    }));
+}
+
+// add message to dom on message
+ws.onmessage = (event) => {
+    addMessage(event.data);
+}
+
+// connection error and close handler
+ws.onerror = (event) => {
+    alert('Error!');
+    console.error(event);
+}
+
+ws.onclose = (event) => {
+    alert('Connection has closed.');
+    chat.insertAdjacentHTML('beforeend', '<h2>Connection has closed.</h2>');
+    console.error(event);
+}
+
+// 🧩 OTHER STUFF
+// random username and colour on page load, cookies to be implemented later
+window.onload =()=> {
+    un = `user${Math.floor(Math.random() * 999) * 10}`;
+    col = getRandomColour();
+}
+
+// send message on enter key in message bar
+msgBar.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+    }
+}); 
