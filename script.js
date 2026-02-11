@@ -3,7 +3,7 @@
 let currentURL = new URL(window.location.href);
 let params = new URLSearchParams(currentURL.search);
 
-const ws = new WebSocket(params.get('server') || 'ws://localhost:8080');
+const ws = new WebSocket(params.get('server') || 'ws://localhost:8000');
 const thisUrl = new URL(window.location.href)
 const chat = document.getElementById('chat');
 const msgBar = document.getElementById('usrMessage');
