@@ -36,14 +36,23 @@
             </svg>
 
             <div id="icons">
-                <i class="bi bi-server" title="Custom Server URL"></i>
-                <i class="bi bi-github" title="Source Code on Github"></i>
-                <i class="bi bi-gear-fill" title="Settings"></i>
+                <i class="bi bi-hdd-fill" title="Custom Server" onclick="customServer()"></i>
+                <i class="bi bi-gear-fill" title="Settings" onclick="settings.openClose()"></i>
             </div>
         </nav>
+        
+        <div class="modal-wrapper">
+            <div id="settings" class="modal">
+                <input type="text" placeholder="Enter your username..." id="usrName">
+                <input type="color" title="Select your colour" id="usrCol">
+                <div>
+                    <button onclick="settings.save()" style="background-color: #0ce65f;">Save</button>
+                    <button onclick="settings.openClose()">Cancel</button>
+                </div>
+            </div>
+        </div>
 
         <div id="chat">
-
         </div>
 
         <div id="msgBar">

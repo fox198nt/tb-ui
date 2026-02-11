@@ -1,9 +1,34 @@
 /* TEXTBORED CLIENT */
 // 📋 VARIABLES
-let ws = new WebSocket('ws://localhost:8000');
+let currentURL = new URL(window.location.href);
+let params = new URLSearchParams(currentURL.search);
+
+const ws = new WebSocket(params.get('server') || 'ws://localhost:8080');
 const thisUrl = new URL(window.location.href)
 const chat = document.getElementById('chat');
 const msgBar = document.getElementById('usrMessage');
+const settings = {
+    wrapper: document.getElementById('settings').parentElement,
+    name: document.getElementById('usrName'),
+    col: document.getElementById('usrCol'),
+    opened: false,
+    openClose() {
+        if (this.opened) {
+            this.wrapper.style.display = 'none';
+            this.opened = false;
+        } else {
+            this.wrapper.style.display = 'block';
+            this.opened = true;
+        }
+    },
+    save() {
+        un = this.name.value || un;
+        col = this.col.value || col;
+        console.log('Settings saved!');
+        this.openClose();
+    }
+}
+
 let un;
 let col;
 
@@ -91,6 +116,25 @@ function sendMessage() {
         if ((now - lastTime) < 10000) return;
         lastTime = now;
     }
+}
+
+function customServer() {
+    const input = prompt("Enter your server URL (eg wss://echo.websocket.org/)");
+    if (!input) return;
+    let url;
+    try {
+        url = new URL(input);
+    } catch (e) {
+        try {
+            url = new URL('ws://' + input);
+        } catch (e2) {
+            alert('Invalid server URL');
+            return;
+        }
+    }
+    params.set("server", url.toString());
+    currentURL.search = params.toString();
+    window.location.href = currentURL.toString();
 }
 
 // 🔌 WEBSOCKET STUFF
