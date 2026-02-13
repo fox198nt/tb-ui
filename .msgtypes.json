@@ -4,18 +4,26 @@
         "username": "[USERNAME]",
         "colour": "[#aabbcc]",
         "message": "[Hello, world!]",
-        "timestamp": "[iso]"
+        "timestamp": "[UTC time string]"
+    },
+    "change": {
+        "type": "change",
+        "oldName": "[USERNAME]",
+        "oldCol": "[#aabbcc]",
+        "username": "[User5]",
+        "colour": "[#ddeeff]",
+        "timestamp": "[UTC time string]"
     },
     "join": {
         "type": "join",
         "username": "[USERNAME]",
         "colour": "[#aabbcc]",
-        "timestamp": "[iso]"
+        "timestamp": "[UTC time string]"
     },
     "leave": {
         "type": "leave",
         "username": "[USERNAME]",
         "colour": "[#aabbcc]",
-        "timestamp": "[iso]"
+        "timestamp": "[UTC time string]"
     }
 }

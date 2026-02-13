@@ -22,8 +22,17 @@ const settings = {
         }
     },
     save() {
+        const old = [un, col];
         un = this.name.value || un;
         col = this.col.value || col;
+        ws.send(JSON.stringify({
+            type: "change",
+            oldName: old[0],
+            oldCol: old[1],
+            username: un,
+            colour: col,
+            timestamp: new Date().toUTCString()
+        }))
         console.log('Settings saved!');
         this.openClose();
     }
@@ -75,6 +84,11 @@ function j2hparse(jsonMsg) {
     <small class="timestamp">${time}</small>
     <div class="content">${msg.message}</div>
 </div>`,
+        change: `<div class="message jl">
+    <strong class="username" style="border-color: ${msg.oldCol};">${msg.oldName}</strong>
+    <div class="content">is now <strong class="username" style="border-color: ${msg.colour};">${msg.username}</strong>.</div>
+    <small class="timestamp">10:48 AM</small>
+</div>`,
         unable: `<p style='color: red;'>Unable to parse received message...</p>`
     }
 
@@ -85,6 +99,8 @@ function j2hparse(jsonMsg) {
             return messages.join;
         case "LEAVE":
             return messages.leave;
+        case "CHANGE":
+            return messages.change;
         default:
             console.error('Unable to parse message: ' + jsonMsg)
             return messages.unable;
@@ -118,6 +134,7 @@ function sendMessage() {
     }
 }
 
+// change the websocket server
 function customServer() {
     const input = prompt("Enter your server URL (eg wss://echo.websocket.org/)");
     if (!input) return;
