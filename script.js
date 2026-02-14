@@ -56,7 +56,7 @@ function getRandomColour() {
 
 // parse json to html
 function j2hparse(jsonMsg) {
-    let data=()=>{
+    const msg = (()=>{
         try {
             return JSON.parse(jsonMsg);
         } catch (error) {
@@ -64,8 +64,7 @@ function j2hparse(jsonMsg) {
                 type: "unable"
             };
         }
-    }
-    const msg = data();
+    });
     
     // const time = convertTo12Hr(msg.timestamp);
     const time = new Date(msg.time).toLocaleTimeString("en-US", {hour: '2-digit', minute:'2-digit'});
