@@ -25,6 +25,8 @@ const settings = {
         const old = [un, col];
         un = this.name.value || un;
         col = this.col.value || col;
+        localStorage.setItem("username", un);
+        localStorage.setItem("colour", col);
         ws.send(JSON.stringify({
             type: "change",
             oldName: old[0],
@@ -185,11 +187,20 @@ ws.onclose = (event) => {
 }
 
 // 🧩 OTHER STUFF
-// random username and colour on page load, cookies to be implemented later
-window.onload =()=> {
-    un = `user${Math.floor(Math.random() * 999) * 10}`;
-    col = getRandomColour();
-}
+// random username and colour on page load, or load from local storage
+window.onload = () => {
+    const storedName = localStorage.getItem("username");
+    const storedCol = localStorage.getItem("colour");
+    if (storedName && storedCol) {
+        un = storedName;
+        col = storedCol;
+    } else {
+        un = `user${Math.floor(Math.random() * 999)}0`;
+        col = getRandomColour();
+        localStorage.setItem("username", un);
+        localStorage.setItem("username", col);
+    }
+};
 
 // send message on enter key in message bar
 msgBar.addEventListener("keypress", function(event) {

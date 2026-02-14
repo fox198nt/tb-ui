@@ -27,8 +27,6 @@ Deno.serve((req) => {
     };
     socket.onclose = () => {
         console.log(`A client has disconnected`);
-        // add leave message
-        // SINCE WHEN WAS COPILOT INTEGRATED IN VS CODE
         connectedClients.delete(socket);
     };
 

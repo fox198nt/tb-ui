@@ -25,5 +25,15 @@
         "username": "[USERNAME]",
         "colour": "[#aabbcc]",
         "timestamp": "[UTC time string]"
+    },
+    "user list (to be done)": {
+        "reQuest": {
+            "type": "list-q"
+        },
+        "reSponse": {
+            "type": "list-s",
+            "username": "[USERNAME]",
+            "colour": "[#aabbcc]"
+        }
     }
 }

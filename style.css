@@ -210,7 +210,7 @@ nav {
     justify-content: center;
 }
 
-/* settings popup - mostly done by github copilot */
+/* modals */
 .modal {
     position: fixed;
     display: flex;
