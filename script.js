@@ -64,7 +64,7 @@ function j2hparse(jsonMsg) {
                 type: "unable"
             };
         }
-    });
+    })();
     
     // const time = convertTo12Hr(msg.timestamp);
     const time = new Date(msg.time).toLocaleTimeString("en-US", {hour: '2-digit', minute:'2-digit'});
